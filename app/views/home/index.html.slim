@@ -1,0 +1,14 @@
+- @foods.each do |food|
+  .col-xs-2.col-sm-6.col-md-3
+    .card
+      img.card-img-top alt=("Card image cap") src="#{image_url("#{food.photo}")}" /
+      .card-body
+        .input-group.mb-3
+          .input-group-prepend
+            .input-group-text
+              input type="checkbox" /
+          input.form-control aria-label=("Text input with checkbox") type="text" /
+        h5.card-title
+          = food.name
+        p.card-text
+          = "S/ " + food.price.to_s
