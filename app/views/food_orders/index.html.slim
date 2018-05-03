@@ -1,0 +1,25 @@
+h1 Listing food_orders
+
+table
+  thead
+    tr
+      th Food
+      th Order
+      th Quantity
+      th
+      th
+      th
+
+  tbody
+    - @food_orders.each do |food_order|
+      tr
+        td = food_order.food
+        td = food_order.order
+        td = food_order.quantity
+        td = link_to 'Show', food_order
+        td = link_to 'Edit', edit_food_order_path(food_order)
+        td = link_to 'Destroy', food_order, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Food order', new_food_order_path

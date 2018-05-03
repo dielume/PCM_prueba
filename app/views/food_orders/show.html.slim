@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Food:
+  = @food_order.food
+p
+  strong Order:
+  = @food_order.order
+p
+  strong Quantity:
+  = @food_order.quantity
+
+=> link_to 'Edit', edit_food_order_path(@food_order)
+'|
+=< link_to 'Back', food_orders_path
