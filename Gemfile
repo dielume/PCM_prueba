@@ -37,6 +37,7 @@ gem "slim-rails"
 gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 gem 'simple_form'
+gem "font-awesome-rails"
 
 
 group :development, :test do
