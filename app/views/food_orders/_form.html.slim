@@ -1,18 +1,11 @@
-= form_for @food_order do |f|
-  - if @food_order.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@food_order.errors.count, "error")} prohibited this food_order from being saved:"
-      ul
-        - @food_order.errors.full_messages.each do |message|
-          li = message
+= simple_form_for(@food_order) do |f|
+  = f.error_notification
 
-  .field
-    = f.label :food
-    = f.text_field :food
-  .field
-    = f.label :order
-    = f.text_field :order
-  .field
-    = f.label :quantity
+  .form-inputs
+    = f.association :food, as: :check_boxes, collection: Food.order(:name)
+    = f.association :order
     = f.number_field :quantity
-  .actions = f.submit
+
+  br
+  .form-actions
+    = f.button :submit, class: "btn btn-success"
