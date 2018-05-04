@@ -1,0 +1,18 @@
+// https://github.com/twbs/bootstrap-rubygem/blob/master/assets/stylesheets/bootstrap/_variables.scss
+$primary:       #1C2F38;
+$secondary:     #61B741;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Lora');
+
+$font-family-serif: 'Montserrat', serif;
+$font-family-sans-serif: 'Lora', sans-serif;
+
+$headings-font-family: $font-family-serif;
+$headings-font-weight: 700;
+
+// $input-btn-padding-y:         .375rem !default;
+// $input-btn-padding-x:         .75rem !default;
+
+$input-btn-padding-y:         0.55rem;
+$input-btn-padding-x:         1.25rem;

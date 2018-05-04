@@ -6,7 +6,7 @@
     .field
       = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
     .actions = f.submit class: "btn btn-success"
-
+  br
   .row
     - @foods.each do |food|
       .col-md-3.col-sm-6.col-12
