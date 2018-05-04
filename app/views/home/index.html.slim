@@ -2,8 +2,10 @@
   = form_for @order do |f|
     .field
       = f.label :table
-      = f.number_field :table
-
+      = f.number_field :table, {min: 0, value: 0}
+    .field
+      = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
+    .actions = f.submit
     .field
       .row
         - @foods.each do |food|
@@ -15,15 +17,16 @@
                   .input-group-prepend
                     .input-group-text
                       = f.fields_for :food_orders do |food_order|
-                        = food_order.check_box :food, {multiple: true}, food
-                        = food_order.number_field :quantity, {multiple: true}
+                        / = food_order.check_box :food, {multiple: true, value: food.id}
+                        input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
+                        = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
                 h5.card-title
                   = food.name
                 p.card-text
                   = "S/ " + food.price.to_s
 
-    .actions = f.submit
-
+/ <input type="checkbox" value="7" name="order[food_orders][food][]" id="order_food_orders_food_7">
+/ <input type="checkbox" value="1" name="order[food_orders][food]" id="order_food_orders_food">
 
 
 / .row

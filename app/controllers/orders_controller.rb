@@ -24,19 +24,20 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    byebug
-    # @order = Order.new(order_params)
+    @order = Order.new(order_params)
+    @food_order = get_food_order_params
+    @food_order.each{ |food_order| @order.food_orders.build(food_order)}
     redirect_to root_path
 
-    # respond_to do |format|
-    #   if @order.save
-    #     format.html { redirect_to @order, notice: 'Order was successfully created.' }
-    #     format.json { render :show, status: :created, location: @order }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @order.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    respond_to do |format|
+      if @order.save
+        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
+        format.json { render :show, status: :created, location: @order }
+      else
+        format.html { render :new }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /orders/1
@@ -71,6 +72,17 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:table, :status, {:food_orders => {}})
+      params.require(:order).permit(:table, :status)
     end
+
+    def food_order_params
+      food_order_params = params.require(:order).permit({:food_orders => {}}).to_h
+    end
+
+    def get_food_order_params
+      quantity = food_order_params["food_orders"]["quantity"].select{|quantity| quantity.to_i > 0}
+      food_id = food_order_params["food_orders"]["food"]
+      food_id.each_with_index.map{|id, index| {"food_id" => id, "quantity" => quantity[index]}}
+    end
+
 end
