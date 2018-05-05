@@ -1,29 +1,32 @@
-= form_for @order do |f|
-  .row
-    .field.col-md-3
-      = f.label :table
-      = f.number_field :table, {min: 0, value: 0}
-    .field
-      = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
-    .actions = f.submit class: "btn btn-success"
-  br
-  .row
-    - @foods.each do |food|
-      .col-md-3.col-sm-6.col-12
-        .card
-          img.card-img-top alt=("Card image cap") src="#{image_url("#{food.photo}")}" /
-          .card-body
-            .input-group.mb-3
-              .input-group-prepend
-                .input-group-text
-                  = f.fields_for :food_orders do |food_order|
-                    / = food_order.check_box :food, {multiple: true, value: food.id}
-                    input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
-                    = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
-            h5.card-title
-              = food.name
-            p.card-text
-              = "S/ " + food.price.to_s
+= link_to "Mozo", orders_path
+br
+= link_to "Cocinero", orders_path
+/ = form_for @order do |f|
+/   .row
+/     .field.col-md-3
+/       = f.label :table
+/       = f.number_field :table, {min: 0, value: 0}
+/     .field
+/       = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
+/     .actions = f.submit class: "btn btn-success"
+/   br
+/   .row
+/     - @foods.each do |food|
+/       .col-md-3.col-sm-6.col-12
+/         .card
+/           img.card-img-top alt=("Card image cap") src="#{image_url("#{food.photo}")}" /
+/           .card-body
+/             .input-group.mb-3
+/               .input-group-prepend
+/                 .input-group-text
+/                   = f.fields_for :food_orders do |food_order|
+/                     / = food_order.check_box :food, {multiple: true, value: food.id}
+/                     input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
+/                     = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
+/             h5.card-title
+/               = food.name
+/             p.card-text
+/               = "S/ " + food.price.to_s
 
 / <input type="checkbox" value="7" name="order[food_orders][food][]" id="order_food_orders_food_7">
 / <input type="checkbox" value="1" name="order[food_orders][food]" id="order_food_orders_food">

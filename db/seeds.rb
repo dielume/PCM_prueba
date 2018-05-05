@@ -15,7 +15,9 @@ dishes = [{name: "Ceviche", photo: "ceviche.jpg", price: 35},
           {name: "Ají de gallina", photo: "aji_de_gallina.jpg", price: 35},
           {name: "Rocoto relleno", photo: "rocoto_relleno.jpg", price: 30},
           {name: "Papa a la huancaina", photo: "papa_a_la_huancaina.jpg", price: 23},
-          {name: "Anticuchos", photo: "anticuchos.jpg", price: 30}]
+          {name: "Anticuchos", photo: "anticuchos.jpg", price: 30},
+          {name: "Tacu tacu", photo: "tacu_tacu.jpg", price: 35},
+          {name: "Cau_cau", photo:"cau_cau.jpg", price: 30}]
 
 @foods = dishes.map { |dish| Food.new(dish) }
-@foods.map{ |food| food.save}
+@foods.each{ |food| food.save}
