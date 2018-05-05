@@ -2,7 +2,8 @@
   .row
     .field.col-md-3
       = f.label "Mesa"
-      = f.number_field :table, {min: 0, value: 0}
+      = f.collection_select :table, Order::TABLES, :to_s, :to_s,
+       :include_blank => false
     .field
       = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
     .actions = f.submit class: "btn btn-success"
@@ -18,14 +19,11 @@
                 .input-group-text
                   = f.fields_for :food_orders do |food_order|
                     / = food_order.check_box :food, {multiple: true, value: food.id}
-                    input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
-                    = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
+                    .food-order-food
+                      input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
+                    .food-order-quantity
+                      = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
             h5.card-title
               = food.name
             p.card-text
               = "S/ " + food.price.to_s
-/ h1 New order
-/
-/ == render 'form'
-/
-/ = link_to 'Back', orders_path

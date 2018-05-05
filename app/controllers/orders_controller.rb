@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.all.order(created_at: :desc)
   end
 
   # GET /orders/1
@@ -28,11 +28,10 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @food_order = get_food_order_params
     @food_order.each{ |food_order| @order.food_orders.build(food_order)}
-    redirect_to root_path
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
+        format.html { redirect_to action: "index", notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
