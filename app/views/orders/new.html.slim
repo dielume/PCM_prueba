@@ -2,7 +2,7 @@
   .row
     .field.col-md-3
       = f.label "Mozo"
-      = f.collection_select :table, Order::WAITERS, :to_s, :to_s,
+      = f.collection_select :name, Order::WAITERS, :to_s, :to_s,
        :include_blank => false
     .field.col-md-3
       = f.label "Mesa"
@@ -10,7 +10,7 @@
        :include_blank => false
     .field
       = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
-    .actions = f.submit class: "btn btn-success"
+    .actions = f.submit "Crear orden", class: "btn btn-success"
   br
   .row
     - @foods.each do |food|
@@ -26,8 +26,8 @@
                     .food-order-food
                       input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
                          id="#{"order_food_orders_food_"+ food.id.to_s}"]
-                    input[ multiple="multiple" min="1" value="0" type="number" name="order[food_orders][quantity][]"
-                        id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled="true"]
+                    input[ multiple="multiple" min="0" value="0" type="number" name="order[food_orders][quantity][]"
+                        id="#{"order_food_orders_quantity_" + food.id.to_s}" ]
             h5.card-title
               = food.name
             p.card-text

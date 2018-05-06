@@ -1,27 +1,59 @@
-h1 Listing orders
+h1 Lista de ordenes
+
+= will_paginate @orders
+- @orders.each do |order|
+  #accordion
+    .card
+      #headingOne.card-header
+        h5.mb-0
+          button.btn.btn-link aria-controls="collapseOne" aria-expanded="true" data-target="#collapseOne" data-toggle="collapse"
+            b> Mozo:
+            span> #{order.name} &nbsp; &nbsp;
+            b> Mesa:
+            span> #{order.table} &nbsp; &nbsp;
+            b> Actualizado
+            span> #{order.created_at}
+          span> &nbsp; &nbsp;
+          = link_to fa_icon("trash"), order, data: { confirm: 'Are you sure?' }, method: :delete
+
+
+      #collapseOne.collapse.show aria-labelledby="headingOne" data-parent="#accordion"
+        .card-body
+          table.table.table-striped.table-hover
+            thead
+              tr
+                th Plato
+                th Cantidad
+                th
+                th
+            - order.food_orders.each do |food_order|
+              tbody
+                  th #{food_order.food_id}
+                  th #{food_order.quantity}
+                  th Editar
+                  th Eliminar
 
 
 
+/ table.table.table-striped.table-hover
+/   thead
+/     tr
+/       th Table
+/       th Status
+/       th
+/       th
+/       th
+/
+/   tbody
+/     - @orders.each do |order|
+/       tr
+/         td = order.table
+/         td = order.status
+/         td = link_to 'Show', order
+/         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
+/         - order.food_orders.each do |food_order|
+/           tr
+/           td = food_order.quantity
+/ br
 
-table.table.table-striped.table-hover
-  thead
-    tr
-      th Table
-      th Status
-      th
-      th
-      th
-
-  tbody
-    - @orders.each do |order|
-      tr
-        td = order.table
-        td = order.status
-        td = link_to 'Show', order
-        td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
-        - order.food_orders.each do |food_order|
-          tr
-          td = food_order.quantity
-br
-
-= link_to 'New Order', new_order_path
+= link_to 'Nueva orden', new_order_path
