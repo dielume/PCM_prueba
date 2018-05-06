@@ -3,17 +3,21 @@ class FoodOrdersController < ApplicationController
 
   # GET /food_orders
   # GET /food_orders.json
-  def index
-    @food_orders = FoodOrder.all
-  end
+  # def index
+  #   @food_orders = FoodOrder.all
+  # end
 
   # GET /food_orders/1
   # GET /food_orders/1.json
 
-  # GET /food_orders/new
-  def new
-    @food_order = FoodOrder.new
+  def show
+
   end
+
+  # GET /food_orders/new
+  # def new
+  #   @food_order = FoodOrder.new
+  # end
 
   # GET /food_orders/1/edit
 
@@ -52,7 +56,7 @@ class FoodOrdersController < ApplicationController
   def destroy
     @food_order.destroy
     respond_to do |format|
-      format.html { redirect_to food_orders_url, notice: 'Food order was successfully destroyed.' }
+      format.html { redirect_to orders_path, notice: 'Food order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

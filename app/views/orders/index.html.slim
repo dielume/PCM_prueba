@@ -1,8 +1,8 @@
 h1 Lista de ordenes
 
 = will_paginate @orders
-- @orders.each do |order|
-  #accordion
+#accordion
+  - @orders.each do |order|
     .card
       #headingOne.card-header
         h5.mb-0
@@ -31,29 +31,9 @@ h1 Lista de ordenes
                   th #{food_order.food_id}
                   th #{food_order.quantity}
                   th Editar
-                  th Eliminar
+                  th = link_to fa_icon("trash"), food_order, data: { confirm: 'Are you sure?' }, method: :delete
 
 
 
-/ table.table.table-striped.table-hover
-/   thead
-/     tr
-/       th Table
-/       th Status
-/       th
-/       th
-/       th
-/
-/   tbody
-/     - @orders.each do |order|
-/       tr
-/         td = order.table
-/         td = order.status
-/         td = link_to 'Show', order
-/         td = link_to 'Destroy', order, data: { confirm: 'Are you sure?' }, method: :delete
-/         - order.food_orders.each do |food_order|
-/           tr
-/           td = food_order.quantity
-/ br
 
 = link_to 'Nueva orden', new_order_path
