@@ -1,6 +1,10 @@
 = form_for @order do |f|
   .row
     .field.col-md-3
+      = f.label "Mozo"
+      = f.collection_select :table, Order::WAITERS, :to_s, :to_s,
+       :include_blank => false
+    .field.col-md-3
       = f.label "Mesa"
       = f.collection_select :table, Order::TABLES, :to_s, :to_s,
        :include_blank => false
