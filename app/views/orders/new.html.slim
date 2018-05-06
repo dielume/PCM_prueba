@@ -2,12 +2,10 @@
   .row
     .field.col-md-3
       = f.label "Mozo"
-      = f.collection_select :name, Order::WAITERS, :to_s, :to_s,
-       :include_blank => false
+      = f.collection_select :name, Order::WAITERS, :to_s, :to_s, :include_blank => false
     .field.col-md-3
       = f.label "Mesa"
-      = f.collection_select :table, Order::TABLES, :to_s, :to_s,
-       :include_blank => false
+      = f.collection_select :table, Order::TABLES, :to_s, :to_s, :include_blank => false
     .field
       = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
     .actions = f.submit "Crear orden", class: "btn btn-success"
