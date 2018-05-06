@@ -25,6 +25,7 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+    byebug
     @order = Order.new(order_params)
     @food_order = get_food_order_params
     @food_order.each{ |food_order| @order.food_orders.build(food_order)}

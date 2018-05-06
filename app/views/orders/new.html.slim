@@ -20,9 +20,10 @@
                   = f.fields_for :food_orders do |food_order|
                     / = food_order.check_box :food, {multiple: true, value: food.id}
                     .food-order-food
-                      input type="checkbox" value="#{food.id}" name="order[food_orders][food][]" id="#{"order_food_orders_food_"+ food.id.to_s}"
-                    .food-order-quantity
-                      = food_order.number_field :quantity, {multiple: true, min: 0, value: 0}
+                      input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
+                         id="#{"order_food_orders_food_"+ food.id.to_s}"]
+                    input[ multiple="multiple" min="1" value="0" type="number" name="order[food_orders][quantity][]"
+                        id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled="true"]
             h5.card-title
               = food.name
             p.card-text
