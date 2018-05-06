@@ -7,7 +7,7 @@
       = f.label "Mesa"
       = f.collection_select :table, Order::TABLES, :to_s, :to_s, :include_blank => false
     .field
-      = f.text_field :status, {value: "wait", style: "#{'display:none'}"}
+      = f.text_field :status, {value: "Espera", style: "#{'display:none'}"}
     .actions = f.submit "Crear orden", class: "btn btn-success"
   br
   .row
@@ -25,7 +25,7 @@
                       input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
                          id="#{"order_food_orders_food_"+ food.id.to_s}"]
                     input[ multiple="multiple" min="0" value="0" type="number" name="order[food_orders][quantity][]"
-                        id="#{"order_food_orders_quantity_" + food.id.to_s}" ]
+                        id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled ]
             h5.card-title
               = food.name
             p.card-text

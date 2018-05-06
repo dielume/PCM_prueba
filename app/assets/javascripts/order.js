@@ -6,11 +6,13 @@ $(document).on('turbolinks:load', function(){
     var quantity = $(quantityID)
 
     if (food[0].checked == true) {
-      quantity.val(1);
-      quantity.prop('disabled', false);
+      quantity.attr({"min" : 1})
+      quantity.val(1)
+      quantity.prop('disabled', false)
     } else{
-      quantity.val(0);
-      quantity.prop('disabled', true);
+      quantity.attr({"min" : 0})
+      quantity.val(0)
+      quantity.prop('disabled', true)
     }
   })
 });

@@ -1,5 +1,6 @@
-h1 Lista de ordenes
-
+h1.same-line Lista de ordenes
+= link_to 'Nueva orden', new_order_path, class: "btn btn-success btn-align"
+br
 = will_paginate @orders, class: "space-pagination"
 br
 #accordion
@@ -13,8 +14,10 @@ br
             span> #{order.name} &nbsp; &nbsp;
             b> Mesa:
             span> #{order.table} &nbsp; &nbsp;
+            b> Estado:
+            span> #{order.status} &nbsp; &nbsp;
             b> Actualizado
-            span> #{order.created_at}
+            span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
           = link_to fa_icon("trash"), order, data: { confirm: 'Are you sure?' }, method: :delete
 
@@ -34,8 +37,3 @@ br
                   th #{food_order.quantity}
                   th Editar
                   th = link_to fa_icon("trash"), food_order, data: { confirm: 'Are you sure?' }, method: :delete
-
-
-
-
-= link_to 'Nueva orden', new_order_path
