@@ -9,7 +9,26 @@ html
     = javascript_pack_tag 'application'
 
   body
-    nav.navbar.navbar-dark.bg-primary
-    .container  
+    nav.navbar.navbar-expand-lg.navbar-dark.bg-primary
+      .container
+        a.navbar-brand href="#{root_path}"
+          = fa_icon "cutlery"
+        button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
+          span.navbar-toggler-icon
+        #navbarNavDropdown.collapse.navbar-collapse
+          ul.navbar-nav
+            li.nav-item.dropdown
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
+                | Mozos
+              .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+                a.dropdown-item href="#{orders_path}"  Ordenes
+                a.dropdown-item href="#{new_order_path}"  Nueva orden
+            li.nav-item.dropdown
+              a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
+                | Chefs
+              .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+                a.dropdown-item href="#{kitchen_index_url}"  Pedidos
+
+    .container
       br
       = yield
