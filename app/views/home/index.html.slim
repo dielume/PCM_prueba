@@ -1,3 +1,16 @@
-= link_to "Mozo", orders_path
-br
-= link_to "Cocinero", orders_path
+/ = link_to "Mozo", orders_path
+/ br
+/ = link_to "Cocinero", kitchen_path
+
+.row
+  .col-6
+    .card
+      .card-body
+        h5.card-title Mozos
+        a.card-link href="#{orders_path}" class="btn btn-outline-success" Ordenes
+        a.card-link href="#{new_order_path}" class="btn btn-outline-success" Nueva orden
+  .col-6
+    .card
+      .card-body
+        h5.card-title Chefs
+        a.card-link href="#{kitchen_index_url}" class="btn btn-outline-success" Pedidos
