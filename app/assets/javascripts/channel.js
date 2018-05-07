@@ -1,5 +1,8 @@
 jQuery(document).on('turbolinks:load', function() {
   $('#kitchen').each(function(){
+    var that = this;
+    var cable_id = $(that).attr('value');
+    console.log(cable_id);
     App.room = App.cable.subscriptions.create("WebNotificationsChannel", {
       connected: function() {
               console.log("connected")
@@ -8,7 +11,17 @@ jQuery(document).on('turbolinks:load', function() {
           console.log("disconnected de nuevo")
       },
       received: function(data) {
-        return $('#kitchen').append(data['message']);
+        if (cable_id == "mozo") {
+          if (data['message'].slice(0,4) == "mozo") {
+            return $('#kitchen').prepend(data['message'].slice(4));
+          }
+
+        } else if(cable_id == "chef"){
+          if (data['message'].slice(0,4) == "chef") {
+            return $('#kitchen').prepend(data['message'].slice(4));
+          }
+        }
+
 
       }
     });

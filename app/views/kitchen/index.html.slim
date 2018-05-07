@@ -8,7 +8,7 @@ h3.same-line Filtros
   = link_to 'Finalizados', kitchen_index_path(status: "Finalizado"), class: "btn btn-primary btn-align"
 = will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 br
-#kitchen
+#kitchen value="chef"
 - @orders.each do |order|
   #accordion
     .card
