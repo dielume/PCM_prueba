@@ -6,7 +6,6 @@ br
 #accordion
   - @orders.each do |order|
     .card
-      / #headingOne.card-header
       = content_tag(:div, id: "heading" + order.id.to_s, class: "card-header")
         h5.mb-0
           button.btn.btn-link aria-controls= "#{"collapse" + order.id.to_s}" aria-expanded="true" data-target="#{"collapse" + order.id.to_s}" data-toggle="collapse"
@@ -21,7 +20,6 @@ br
           span> &nbsp; &nbsp;
           = link_to fa_icon("trash"), order, data: { confirm: 'Are you sure?' }, method: :delete
 
-      / #collapseOne.collapse.show aria-labelledby="headingOne" data-parent="#accordion"
       = content_tag(:div, id: "collapse" + order.id.to_s, class: "collapse show", 'aria-labelledby' => "heading" + + order.id.to_s, 'data_parent' => "#accordion")
         .card-body
           table.table.table-striped.table-hover
@@ -29,11 +27,19 @@ br
               tr
                 th Plato
                 th Cantidad
+                th Precio
                 th
                 th
-            - order.food_orders.each do |food_order|
+            - order.food_orders.includes(:food).each do |food_order|
               tbody
-                  th #{food_order.food_id}
+                  th #{food_order.food.name}
                   th #{food_order.quantity}
+                  th #{"S/"+food_order.food.price.to_s}
                   th Editar
                   th = link_to fa_icon("trash"), food_order, data: { confirm: 'Are you sure?' }, method: :delete
+            tbody
+                  th Total
+                  th
+                  th = "S/" + order.food_orders.map{|food_order| food_order.quantity * food_order.food.price}.reduce(0, :+).to_s
+                  th
+                  th

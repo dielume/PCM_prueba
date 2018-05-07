@@ -1,14 +1,15 @@
 = form_for @order do |f|
   .row
-    .field.col-md-3
+    .field.col-md-3.col-6
       = f.label "Mozo"
       = f.collection_select :name, Order::WAITERS, :to_s, :to_s, :include_blank => false
-    .field.col-md-3
+    .field.col-md-3.col-6
       = f.label "Mesa"
       = f.collection_select :table, Order::TABLES, :to_s, :to_s, :include_blank => false
     .field
-      = f.text_field :status, {value: "Espera", style: "#{'display:none'}"}
-    .actions = f.submit "Crear orden", class: "btn btn-success"
+      = f.text_field :status, {value: "Pendiente", style: "#{'display:none'}"}
+    .actions.col-6
+      = f.submit "Crear orden", class: "btn btn-success"
   br
   .row
     - @foods.each do |food|
@@ -23,7 +24,7 @@
                     / = food_order.check_box :food, {multiple: true, value: food.id}
                     .food-order-food
                       input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
-                         id="#{"order_food_orders_food_"+ food.id.to_s}"]
+                         id="#{"order_food_orders_food_"+ food.id.to_s}" class="big-checkbox"]
                     input[ multiple="multiple" min="0" value="0" type="number" name="order[food_orders][quantity][]"
                         id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled ]
             h5.card-title

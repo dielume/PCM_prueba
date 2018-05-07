@@ -1,4 +1,4 @@
-h1 Lista de pedidos
+h1 Lista de ordenes
 = will_paginate @orders, class: "space-pagination"
 br
 - @orders.each do |order|
@@ -16,7 +16,7 @@ br
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to fa_icon("check"), kitchen_path(order, order: {status: "Terminado"}), method: :put
+          = link_to "Finalizar orden", kitchen_path(order, order: {status: "Terminado"}), method: :put
 
 
 

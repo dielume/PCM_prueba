@@ -1,11 +1,11 @@
 doctype html
 html
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    / meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta name="viewport" content="width=device-width, initial-scale=1"
-    meta name="description" content=""
-    meta name="author" content=""
+    / meta name="description" content=""
+    / meta name="author" content=""
     title PCM-Prueba
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -20,7 +20,7 @@ html
         button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarNavDropdown.collapse.navbar-collapse
-          ul.navbar-nav
+          ul.navbar-nav.ml-auto
             li.nav-item.dropdown
               a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
                 | Mozos
@@ -31,7 +31,7 @@ html
               a#navbarDropdownMenuLink.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#"
                 | Chefs
               .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-                a.dropdown-item href="#{kitchen_index_url}"  Pedidos
+                a.dropdown-item href="#{kitchen_index_url}"  Ordenes
 
     .container
       br
