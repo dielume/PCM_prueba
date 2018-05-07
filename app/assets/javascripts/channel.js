@@ -4,7 +4,7 @@ jQuery(document).on('turbolinks:load', function() {
             console.log("connected")
           },
     disconnected: function() {
-        console.log("disconnected: " + cable_id)
+        console.log("disconnected" 
     },
     received: function(data) {
       return $('#messages').append(data['message']);
