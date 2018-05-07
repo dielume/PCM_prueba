@@ -1,6 +1,10 @@
 h1.same-line Lista de ordenes
 = link_to 'Nueva orden', new_order_path, class: "btn btn-success btn-align"
 br
+h3.same-line Filtros
+= link_to 'Pendientes', orders_path(status: "Pendiente"), class: "btn btn-primary btn-align"
+= link_to 'Terminados', orders_path(status: "Finalizado"), class: "btn btn-primary btn-align"
+br
 = will_paginate @orders, class: "space-pagination"
 br
 #accordion

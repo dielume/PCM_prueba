@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order(updated_at: :desc)
+    @orders = Order.where(status: pendiente_finalizado_params).order(updated_at: :desc)
     @orders = @orders.paginate( :per_page => 10, :page => params[:page])
   end
 
@@ -84,6 +84,14 @@ class OrdersController < ApplicationController
       quantity = food_order_params["food_orders"]["quantity"].select{|quantity| quantity.to_i > 0}
       food_id = food_order_params["food_orders"]["food"]
       food_id.each_with_index.map{|id, index| {"food_id" => id, "quantity" => quantity[index]}}
+    end
+
+    def pendiente_finalizado_params
+      if params[:status]
+        params[:status]
+      else
+        "Pendiente"
+      end
     end
 
 end

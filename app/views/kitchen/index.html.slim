@@ -1,4 +1,7 @@
 h1 Lista de ordenes
+h3.same-line Filtros
+= link_to 'Pendientes', kitchen_index_path(status: "Pendiente"), class: "btn btn-primary btn-align"
+= link_to 'Terminados', kitchen_index_path(status: "Finalizado"), class: "btn btn-primary btn-align"
 = will_paginate @orders, class: "space-pagination"
 br
 - @orders.each do |order|
@@ -16,7 +19,7 @@ br
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to "Finalizar orden", kitchen_path(order, order: {status: "Terminado"}), class: "btn btn-success", method: :put
+          = link_to "Finalizar orden", kitchen_path(order, order: {status: "Finalizado"}), class: "btn btn-success", method: :put
 
 
 

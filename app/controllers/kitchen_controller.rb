@@ -2,7 +2,7 @@ class KitchenController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    @orders = Order.all.order(updated_at: :desc)
+    @orders = Order.where(status: pendiente_finalizado_params).order(updated_at: :desc)
     @orders = @orders.paginate( :per_page => 10, :page => params[:page])
   end
 
@@ -29,6 +29,14 @@ class KitchenController < ApplicationController
 
     def order_params
       params.require(:order).permit(:table, :status, :name)
+    end
+
+    def pendiente_finalizado_params
+      if params[:status]
+        params[:status]
+      else
+        "Pendiente"
+      end
     end
 
 end
