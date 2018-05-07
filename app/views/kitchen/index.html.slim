@@ -25,7 +25,7 @@ br
             span> #{order.status} &nbsp;
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
-          span> &nbsp; 
+          span> &nbsp;
           - if @status != "Finalizado"
             = link_to "Finalizar orden", kitchen_path(order, order: {status: "Finalizado"}), class: "btn btn-success", remote: true, method: :put
 
@@ -36,7 +36,7 @@ br
               tr
                 th Plato
                 th Cantidad
-            - order.food_orders.each do |food_order|
+            - order.food_orders.where(status: "Pendiente").each do |food_order|
               tbody
                   th #{food_order.food.name}
                   th #{food_order.quantity}

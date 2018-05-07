@@ -57,7 +57,6 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
     if order_params.to_h["status"] != "Cancelado"
-      @order.food_orders.delete_all
       @food_order = get_food_order_params
       @food_order.each{ |food_order| @order.food_orders.build(food_order)}
     end
@@ -104,7 +103,7 @@ class OrdersController < ApplicationController
       end
       quantity = food_order_params["food_orders"]["quantity"].select{|quantity| quantity.to_i > 0}
       food_id = food_order_params["food_orders"]["food"]
-      food_id.each_with_index.map{|id, index| {"food_id" => id, "quantity" => quantity[index]}}
+      food_id.each_with_index.map{|id, index| {"food_id" => id, "quantity" => quantity[index], "status" => "Pendiente"}}
     end
 
     def pendiente_finalizado_params

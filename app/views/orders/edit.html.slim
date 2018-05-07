@@ -22,16 +22,21 @@
                 .input-group-text
                   = f.fields_for :food_orders do |food_order|
                     .food-order-food
-                      - if food_id_exist?(food, @food_orders)
-                        input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
-                           id="#{"order_food_orders_food_"+ food.id.to_s}" checked="checked"]
-                        input[ multiple="multiple" min="1" value="#{food_order_quantity(food, @food_orders)}" type="number" name="order[food_orders][quantity][]"
-                          id="#{"order_food_orders_quantity_" + food.id.to_s}"]
-                      - else
-                        input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
-                           id="#{"order_food_orders_food_"+ food.id.to_s}"]
-                        input[ multiple="multiple" min="1" value="0" type="number" name="order[food_orders][quantity][]"
-                          id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled]
+                      input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
+                         id="#{"order_food_orders_food_"+ food.id.to_s}"]
+                      input[ multiple="multiple" min="1" value="0" type="number" name="order[food_orders][quantity][]"
+                        id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled]
+
+                      / - if food_id_exist?(food, @food_orders)
+                      /   input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
+                      /      id="#{"order_food_orders_food_"+ food.id.to_s}" checked="checked"]
+                      /   input[ multiple="multiple" min="1" value="#{food_order_quantity(food, @food_orders)}" type="number" name="order[food_orders][quantity][]"
+                      /     id="#{"order_food_orders_quantity_" + food.id.to_s}"]
+                      / - else
+                      /   input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
+                      /      id="#{"order_food_orders_food_"+ food.id.to_s}"]
+                      /   input[ multiple="multiple" min="1" value="0" type="number" name="order[food_orders][quantity][]"
+                      /     id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled]
 
             h5.card-title
               = food.name

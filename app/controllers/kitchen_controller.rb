@@ -12,6 +12,9 @@ class KitchenController < ApplicationController
   end
 
   def update
+    @order.food_orders.each do |food_order|
+      food_order.update(status: "Finalizado")
+    end
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to kitchen_index_path, notice: 'Order was successfully updated.' }

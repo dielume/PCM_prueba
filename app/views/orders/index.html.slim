@@ -29,12 +29,12 @@ h3.same-line Filtros
             b> Mesa:
             span> #{order.table} &nbsp;
             b> Estado:
-            span> #{order.status} &nbsp; 
+            span> #{order.status} &nbsp;
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
           - if @status == "Pendiente"
-            = link_to "Editar", edit_order_path(order), class: "btn btn-warning"
+            = link_to "Agregar", edit_order_path(order), class: "btn btn-success"
             span> &nbsp; &nbsp;
             = link_to "Cancelar", order_path(order, order: {status: "Cancelado"}), class: "btn btn-danger", method: :put
           - if @status == "Finalizado"
