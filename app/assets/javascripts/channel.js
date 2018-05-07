@@ -4,7 +4,7 @@ jQuery(document).on('turbolinks:load', function() {
             console.log("connected")
           },
     disconnected: function() {
-        console.log("disconnected") 
+        console.log("disconnected de nuevo") 
     },
     received: function(data) {
       return $('#messages').append(data['message']);
