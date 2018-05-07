@@ -37,7 +37,7 @@ class Order < ApplicationRecord
       'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido '+order.id.to_s+'</h2></div>
        <div id="accordion">
         <div class="card">
-          <div class="card-header" id="headingOne">
+          <div class="card-header bg-success" id="headingOne" "bg-success">
             <h5 class="mb-0"><div class="title-card">
               <b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span>
             </div>
@@ -80,7 +80,7 @@ class Order < ApplicationRecord
       'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Se agregan platos a la orden ' + order.id.to_s + '</h2></div>
        <div id="accordion">
         <div class="card">
-          <div class="card-header" id="headingOne">
+          <div class="card-header bg-success" id="headingOne" >
             <h5 class="mb-0"><div class="title-card">
               <b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span>
             </div>
