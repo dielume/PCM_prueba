@@ -44,7 +44,8 @@ class OrdersController < ApplicationController
 
       respond_to do |format|
         if @order.save
-          format.html { redirect_to action: "index", notice: 'Order was successfully created.' }
+          flash[:success] = 'La orden ' + @order.id.to_s + ' fue creada satisfactoriamente'
+          format.html { redirect_to action: "index", notice: 'La orden fue creada satisfactoriamente' }
           format.json { render :show, status: :created, location: @order }
         else
           format.html { render :new }
@@ -72,6 +73,11 @@ class OrdersController < ApplicationController
 
       respond_to do |format|
         if @order.update(order_params)
+          if @order.status == "Cancelado"
+            flash[:error] = 'La orden ' + @order.id.to_s + ' fue cancelada'
+          else
+            flash[:success] = 'La orden ' + @order.id.to_s + ' fue actualizada satisfactoriamente'
+          end
           format.html { redirect_to action: "index", notice: 'Order was successfully updated.' }
           format.json { render :show, status: :ok, location: @order }
         else

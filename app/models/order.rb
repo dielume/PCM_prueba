@@ -72,7 +72,7 @@ class Order < ApplicationRecord
       strings.join
     end
     def html_update_finalizado(order)
-      'mozo<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' Finalizado</h2>
+      'mozo<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' finalizado revisar Estados Finalizados</h2>
         <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
       </div>'
     end
