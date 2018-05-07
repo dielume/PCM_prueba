@@ -38,3 +38,6 @@
               = food.name
             p.card-text
               = "S/ " + food.price.to_s
+  .row
+    .actions
+      = f.submit "Crear orden", class: "btn btn-success", data: { confirm: '¿Esta seguro de crear una nueva orden? una vez creada solo se le podrá cancelar o agregar nuevos platos' }

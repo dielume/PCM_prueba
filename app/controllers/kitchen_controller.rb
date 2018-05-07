@@ -17,7 +17,8 @@ class KitchenController < ApplicationController
     end
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to kitchen_index_path, notice: 'Order was successfully updated.' }
+        flash[:success] = 'La orden ' + @order.id.to_s + ' fue finalizada satisfactoriamente'
+        format.html { redirect_to kitchen_index_path}
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }

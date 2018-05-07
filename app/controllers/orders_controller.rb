@@ -45,7 +45,7 @@ class OrdersController < ApplicationController
       respond_to do |format|
         if @order.save
           flash[:success] = 'La orden ' + @order.id.to_s + ' fue creada satisfactoriamente'
-          format.html { redirect_to action: "index", notice: 'La orden fue creada satisfactoriamente' }
+          format.html { redirect_to action: "index"}
           format.json { render :show, status: :created, location: @order }
         else
           format.html { render :new }
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
           else
             flash[:success] = 'La orden ' + @order.id.to_s + ' fue actualizada satisfactoriamente'
           end
-          format.html { redirect_to action: "index", notice: 'Order was successfully updated.' }
+          format.html { redirect_to action: "index"}
           format.json { render :show, status: :ok, location: @order }
         else
           format.html { render :edit }
@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url}
       format.json { head :no_content }
     end
   end
