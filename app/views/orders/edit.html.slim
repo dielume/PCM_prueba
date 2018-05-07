@@ -1,8 +1,32 @@
-h1 Editing order
-
-== render 'form'
-
-=> link_to 'Show', @order
-'|
-=< link_to 'Back', orders_path
-
+= form_for @order do |f|
+  .row
+    .field.col-md-3.col-6
+      = f.label "Mozo"
+      = f.collection_select :name, Order::WAITERS, :to_s, :to_s, :include_blank => false
+    .field.col-md-3.col-6
+      = f.label "Mesa"
+      = f.collection_select :table, Order::TABLES, :to_s, :to_s, :include_blank => false
+    .field
+      = f.text_field :status, {value: "Pendiente", style: "#{'display:none'}"}
+    .actions.col-6
+      = f.submit "Actualizar orden", class: "btn btn-success"
+  br
+  .row
+    - @foods.each do |food|
+      .col-xs-2.col-sm-6.col-md-3
+        .card
+          img.card-img-top alt=("Card image cap") src="#{image_url("#{food.photo}")}" /
+          .card-body
+            .input-group.mb-3
+              .input-group-prepend
+                .input-group-text
+                  = f.fields_for :food_orders do |food_order|
+                    .food-order-food
+                      input[ type="checkbox" value="#{food.id}" name="order[food_orders][food][]"
+                         id="#{"order_food_orders_food_"+ food.id.to_s}"]
+                      input[ multiple="multiple" min="0" value="0" type="number" name="order[food_orders][quantity][]"
+                        id="#{"order_food_orders_quantity_" + food.id.to_s}" disabled ]
+            h5.card-title
+              = food.name
+            p.card-text
+              = "S/ " + food.price.to_s

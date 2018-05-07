@@ -21,6 +21,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    @foods = Food.all.order(:name)
+    @food_orders = @order.food_orders
   end
 
   # POST /orders
@@ -44,6 +46,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    if order_params.to_h["status"] != "Cancelado"
+      @order.food_orders.delete_all
+      @food_order = get_food_order_params
+      @food_order.each{ |food_order| @order.food_orders.build(food_order)}
+    end
+
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to action: "index", notice: 'Order was successfully updated.' }

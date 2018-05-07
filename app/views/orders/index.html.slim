@@ -4,6 +4,7 @@ br
 h3.same-line Filtros
 = link_to 'Pendientes', orders_path(status: "Pendiente"), class: "btn btn-primary btn-align"
 = link_to 'Terminados', orders_path(status: "Finalizado"), class: "btn btn-primary btn-align"
+= link_to 'Cancelados', orders_path(status: "Cancelado"), class: "btn btn-primary btn-align"
 = will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 #accordion
   - @orders.each do |order|
@@ -20,8 +21,9 @@ h3.same-line Filtros
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to "Eliminar", order, class: "btn btn-danger", method: :delete
-
+          = link_to "Editar", edit_order_path(order), class: "btn btn-warning"
+          span> &nbsp; &nbsp;
+          = link_to "Cancelar", order_path(order, order: {status: "Cancelado"}), class: "btn btn-danger", method: :put
       = content_tag(:div, id: "collapse" + order.id.to_s, class: "collapse show", 'aria-labelledby' => "heading" + + order.id.to_s, 'data_parent' => "#accordion")
         .card-body
           table.table.table-striped.table-hover
@@ -30,18 +32,18 @@ h3.same-line Filtros
                 th Plato
                 th Cantidad
                 th Precio
-                th
-                th
+                / th
+                / th
             - order.food_orders.includes(:food).each do |food_order|
               tbody
                   th #{food_order.food.name}
                   th #{food_order.quantity}
                   th #{"S/"+food_order.food.price.to_s}
-                  th = link_to "Editar", food_order, class: "btn btn-warning", data: { confirm: 'Are you sure?' }, method: :delete
-                  th = link_to "Eliminar", food_order, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
+                  / th = link_to "Editar", food_order, class: "btn btn-warning", data: { confirm: 'Are you sure?' }, method: :delete
+                  / th = link_to "Eliminar", food_order, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
             tbody
                   th Total
                   th
                   th = "S/" + order.food_orders.map{|food_order| food_order.quantity * food_order.food.price}.reduce(0, :+).to_s
-                  th
-                  th
+                  / th
+                  / th
