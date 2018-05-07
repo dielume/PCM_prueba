@@ -22,7 +22,8 @@ class Order < ApplicationRecord
   private
 
     def html_new_order_chef(order)
-      '<h3 class="text-danger"> Nuevo Pedido </h3>
+
+      '<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido</h2></div>
        <div id="accordion">
         <div class="card">
           <div class="card-header" id="headingOne">
