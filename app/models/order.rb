@@ -51,6 +51,7 @@ class Order < ApplicationRecord
               <thead>
                 <tr>
                   <th>Plato</th>
+                  <th>Estado</th>
                   <th>Cantidad</th>
                 </tr>
               </thead>' + food_order_select(order) +
@@ -64,6 +65,7 @@ class Order < ApplicationRecord
       strings = order.food_orders.map do |food_order|
         '<tbody> <tr>
             <th>' + food_order.food.name + '</th>
+            <th>' + food_order.status + ' </th>
             <th>' + food_order.quantity.to_s + ' </th>
         </tbody>'
       end
