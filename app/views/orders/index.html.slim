@@ -22,6 +22,8 @@ h3.same-line Filtros
       = content_tag(:div, id: "heading" + order.id.to_s, class: "card-header")
         h5.mb-0
           .title-card
+            b> N:
+            span> #{order.id} &nbsp; &nbsp;
             b> Mozo:
             span> #{order.name} &nbsp; &nbsp;
             b> Mesa:
