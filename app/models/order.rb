@@ -34,9 +34,9 @@ class Order < ApplicationRecord
         <div class="card">
           <div class="card-header" id="headingOne">
             <h5 class="mb-0"><div class="title-card">
-              <b>N:</b> <span>'+ order.id.to_s + '&nbsp; &nbsp;</span><b>Mozo:</b> <span>'+ order.name + '&nbsp; &nbsp;</span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; &nbsp;</span> <b>Estado:</b> <span>' + order.status + '&nbsp; &nbsp;</span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span>
+              <b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span>
             </div>
-            <span>&nbsp; &nbsp;</span>' +
+            <span>&nbsp; </span>' +
             ActionController::Base.helpers.link_to("Finalizar orden", Rails.application.routes.url_helpers.kitchen_path(order, order: {status: "Finalizado"}), class: "btn btn-success", remote: true, method: :put) +
           '</h5>
         </div>
@@ -66,7 +66,7 @@ class Order < ApplicationRecord
     end
     def html_update_finalizado(order)
       '<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido Finalizado</h2>
-        <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; &nbsp;</span><b>Mozo:</b> <span>'+ order.name + '&nbsp; &nbsp;</span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; &nbsp;</span> <b>Estado:</b> <span>' + order.status + '&nbsp; &nbsp;</span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
+        <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
       </div>'
     end
 
