@@ -4,8 +4,8 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all.order(created_at: :desc)
-    @orders = @orders.paginate( :per_page => 5, :page => params[:page])
+    @orders = Order.all.order(updated_at: :desc)
+    @orders = @orders.paginate( :per_page => 10, :page => params[:page])
   end
 
   # GET /orders/1

@@ -16,7 +16,7 @@ br
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to "Finalizar orden", kitchen_path(order, order: {status: "Terminado"}), method: :put
+          = link_to "Finalizar orden", kitchen_path(order, order: {status: "Terminado"}), class: "btn btn-success", method: :put
 
 
 
@@ -29,5 +29,5 @@ br
                 th Cantidad
             - order.food_orders.each do |food_order|
               tbody
-                  th #{food_order.food_id}
+                  th #{food_order.food.name}
                   th #{food_order.quantity}
