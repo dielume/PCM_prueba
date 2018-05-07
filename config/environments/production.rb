@@ -92,8 +92,8 @@ config.webpacker.check_yarn_integrity = false
 
 
   # Falta probar
-  # config.middleware.use ChatActionCable
-  # config.web_socket_server_url = "wss://boiling-brook-40618.herokuapp.com/"
+  config.middleware.use ChatActionCable
+  config.web_socket_server_url = "wss://boiling-brook-40618.herokuapp.com/"
 
   # config.action_cable.allowed_request_origins = ['https://boiling-brook-40618.herokuapp.com', 'http://boiling-brook-40618.herokuapp.com']
   # config.action_cable.url = "wss://boiling-brook-40618.herokuapp.com/cable"
