@@ -65,6 +65,6 @@ br
             tbody
                   th Total
                   th
-                  th = "S/" + order.food_orders.map{|food_order| food_order.quantity * food_order.food.price}.reduce(0, :+).to_s
                   th
+                  th= "S/" + order.food_orders.map{|food_order| food_order.quantity * food_order.food.price}.reduce(0, :+).to_s
                   / th
