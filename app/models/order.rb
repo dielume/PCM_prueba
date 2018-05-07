@@ -14,7 +14,6 @@ class Order < ApplicationRecord
     ActionCable.server.broadcast "web_notifications_channel",
                                  message: html_new_order_chef(@order)
   end
-
   def broadcast_update_order
     @order = Order.find(self.id)
     case @order.status
