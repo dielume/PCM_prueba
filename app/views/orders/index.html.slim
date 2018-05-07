@@ -3,7 +3,7 @@ h1.same-line Lista de ordenes
 br
 h3.same-line Filtros
 = link_to 'Pendientes', orders_path(status: "Pendiente"), class: "btn btn-primary btn-align"
-= link_to 'Terminados', orders_path(status: "Finalizado"), class: "btn btn-primary btn-align"
+= link_to 'Finalizados', orders_path(status: "Finalizado"), class: "btn btn-primary btn-align"
 = link_to 'Cancelados', orders_path(status: "Cancelado"), class: "btn btn-primary btn-align"
 = will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 #accordion
@@ -21,9 +21,15 @@ h3.same-line Filtros
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to "Editar", edit_order_path(order), class: "btn btn-warning"
-          span> &nbsp; &nbsp;
-          = link_to "Cancelar", order_path(order, order: {status: "Cancelado"}), class: "btn btn-danger", method: :put
+          - if @status == "Pendiente"
+            = link_to "Editar", edit_order_path(order), class: "btn btn-warning"
+            span> &nbsp; &nbsp;
+            = link_to "Cancelar", order_path(order, order: {status: "Cancelado"}), class: "btn btn-danger", method: :put
+          - if @status == "Finalizado"
+            = link_to "Agregar", edit_order_path(order), class: "btn btn-success"
+            span> &nbsp; &nbsp;
+            = link_to "Cancelar", order_path(order, order: {status: "Cancelado"}), class: "btn btn-danger", method: :put
+
       = content_tag(:div, id: "collapse" + order.id.to_s, class: "collapse show", 'aria-labelledby' => "heading" + + order.id.to_s, 'data_parent' => "#accordion")
         .card-body
           table.table.table-striped.table-hover
