@@ -16,7 +16,7 @@
     .field
       = f.text_field :status, {value: "Pendiente", style: "#{'display:none'}"}
     .actions.col-6
-      = f.submit "Crear orden", class: "btn btn-success", data: { confirm: '¿Esta seguro de crear una nueva orden? una vez creada solo se le podrán agregar nuevos platos mas no editarla' }
+      = f.submit "Crear orden", class: "btn btn-success", data: { confirm: '¿Esta seguro de crear una nueva orden? una vez creada solo se le podrá cancelar y agregar' }
   br
   .row
     - @foods.each do |food|

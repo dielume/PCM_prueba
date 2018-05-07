@@ -17,11 +17,16 @@ class Order < ApplicationRecord
 
   def broadcast_update_order
     @order = Order.find(self.id)
-    if @order.status == "Finalizado"
+    case @order.status
+    when "Finalizado"
       ActionCable.server.broadcast "web_notifications_channel", message: html_update_finalizado(@order)
-    else
+    when "Pendiente"
       ActionCable.server.broadcast "web_notifications_channel", message: html_update_agregar(@order)
+    when "Cancelado"
+      ActionCable.server.broadcast "web_notifications_channel", message: html_cancelar_pedido(@order)
     end
+
+
 
   end
 
@@ -29,7 +34,7 @@ class Order < ApplicationRecord
   private
 
     def html_new_order_chef(order)
-      'chef<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido</h2></div>
+      'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido '+order.id.to_s+'</h2></div>
        <div id="accordion">
         <div class="card">
           <div class="card-header" id="headingOne">
@@ -65,12 +70,12 @@ class Order < ApplicationRecord
       strings.join
     end
     def html_update_finalizado(order)
-      'mozo<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido Finalizado</h2>
+      'mozo<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' Finalizado</h2>
         <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
       </div>'
     end
     def html_update_agregar(order)
-      'chef<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Se agregan platos a la orden ' + order.id.to_s + '</h2></div>
+      'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Se agregan platos a la orden ' + order.id.to_s + '</h2></div>
        <div id="accordion">
         <div class="card">
           <div class="card-header" id="headingOne">
@@ -104,5 +109,10 @@ class Order < ApplicationRecord
         </tbody>'
       end
       strings.join
+    end
+    def html_cancelar_pedido(order)
+      'chef<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' Cancelado!! Detener su preparación</h2>
+        <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
+      </div>'
     end
 end

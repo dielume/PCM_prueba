@@ -36,7 +36,13 @@ br
               tr
                 th Plato
                 th Cantidad
-            - order.food_orders.where(status: "Pendiente").each do |food_order|
-              tbody
-                  th #{food_order.food.name}
-                  th #{food_order.quantity}
+            - if @status == "Pendiente"
+              - order.food_orders.where(status: "Pendiente").each do |food_order|
+                tbody
+                    th #{food_order.food.name}
+                    th #{food_order.quantity}
+            - if @status == "Finalizado"
+              - order.food_orders.where(status: "Finalizado").each do |food_order|
+                tbody
+                    th #{food_order.food.name}
+                    th #{food_order.quantity}

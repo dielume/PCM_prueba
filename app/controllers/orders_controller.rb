@@ -35,9 +35,12 @@ class OrdersController < ApplicationController
       flash[:error] = "La orden no puede estar vacía"
       render :new
     else
-      @order = Order.new(order_params)
-      @food_order = get_food_order_params
-      @food_order.each{ |food_order| @order.food_orders.build(food_order)}
+      if order_params.to_h["status"] != "Cancelado"
+        @order = Order.new(order_params)
+        @food_order = get_food_order_params
+        @food_order.each{ |food_order| @order.food_orders.build(food_order)}
+      end
+
 
       respond_to do |format|
         if @order.save
@@ -56,18 +59,25 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    if order_params.to_h["status"] != "Cancelado"
-      @food_order = get_food_order_params
-      @food_order.each{ |food_order| @order.food_orders.build(food_order)}
-    end
+    if get_food_order_params_update == true
+      @foods = Food.all.order(:name)
+      @order = Order.new(order_params)
+      flash[:error] = "Debe agregar por lo menos un plato"
+      render :new
+    else
+      if order_params.to_h["status"] != "Cancelado"
+        @food_order = get_food_order_params
+        @food_order.each{ |food_order| @order.food_orders.build(food_order)}
+      end
 
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to action: "index", notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @order.update(order_params)
+          format.html { redirect_to action: "index", notice: 'Order was successfully updated.' }
+          format.json { render :show, status: :ok, location: @order }
+        else
+          format.html { render :edit }
+          format.json { render json: @order.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -97,8 +107,16 @@ class OrdersController < ApplicationController
       food_order_params = params.require(:order).permit({:food_orders => {}}).to_h
     end
 
+    def get_food_order_params_update
+      if food_order_params["food_orders"].to_h == {} && order_params.to_h["status"] == "Pendiente"
+        true
+      else
+        false
+      end
+    end
+
     def get_food_order_params
-      if food_order_params["food_orders"].to_h == {}
+      if food_order_params["food_orders"].to_h == {} && order_params.to_h["status"] == "Pendiente"
         return true
       end
       quantity = food_order_params["food_orders"]["quantity"].select{|quantity| quantity.to_i > 0}
