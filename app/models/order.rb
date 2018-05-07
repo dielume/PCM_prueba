@@ -92,6 +92,7 @@ class Order < ApplicationRecord
               <thead>
                 <tr>
                   <th>Plato</th>
+                  <th>Estado</th>
                   <th>Cantidad</th>
                 </tr>
               </thead>' + food_order_select_status_pendiente(order) +
@@ -102,9 +103,10 @@ class Order < ApplicationRecord
       </div>'
     end
     def food_order_select_status_pendiente(order)
-      strings = order.food_orders.where(status: "Pendiente").map do |food_order|
+      strings = order.food_orders.order(status: :desc).map do |food_order|
         '<tbody> <tr>
             <th>' + food_order.food.name + '</th>
+            <th>' + food_order.status + '</th>
             <th>' + food_order.quantity.to_s + ' </th>
         </tbody>'
       end

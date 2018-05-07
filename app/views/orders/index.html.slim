@@ -1,7 +1,7 @@
 h1.same-line Lista de ordenes
 = link_to 'Nueva orden', new_order_path, class: "btn btn-success btn-align"
 br
-h3.same-line Filtros
+h3.same-line Estados
 - if @status == "Pendiente"
   = link_to 'Pendientes', orders_path(status: "Pendiente"), class: "btn btn-primary btn-align"
   = link_to 'Finalizados', orders_path(status: "Finalizado"), class: "btn btn-outline-primary btn-align"
@@ -49,6 +49,7 @@ br
             thead
               tr
                 th Plato
+                th Estado
                 th Cantidad
                 th Precio
                 / th
@@ -56,6 +57,7 @@ br
             - order.food_orders.includes(:food).each do |food_order|
               tbody
                   th #{food_order.food.name}
+                  th #{food_order.status}
                   th #{food_order.quantity}
                   th #{"S/"+food_order.food.price.to_s}
                   / th = link_to "Editar", food_order, class: "btn btn-warning", data: { confirm: 'Are you sure?' }, method: :delete
@@ -64,5 +66,5 @@ br
                   th Total
                   th
                   th = "S/" + order.food_orders.map{|food_order| food_order.quantity * food_order.food.price}.reduce(0, :+).to_s
-                  / th
+                  th
                   / th

@@ -1,5 +1,5 @@
 h1 Lista de ordenes
-h3.same-line Filtros
+h3.same-line Estados
 - if @status == "Pendiente"
   = link_to 'Pendientes', kitchen_index_path(status: "Pendiente"), class: "btn btn-primary btn-align"
   = link_to 'Finalizados', kitchen_index_path(status: "Finalizado"), class: "btn btn-outline-primary btn-align"
@@ -35,14 +35,21 @@ br
             thead
               tr
                 th Plato
+                th Estado
                 th Cantidad
-            - if @status == "Pendiente"
-              - order.food_orders.where(status: "Pendiente").each do |food_order|
+            - order.food_orders.order(status: :desc).each do |food_order|
                 tbody
                     th #{food_order.food.name}
+                    th #{food_order.status}
                     th #{food_order.quantity}
-            - if @status == "Finalizado"
-              - order.food_orders.where(status: "Finalizado").each do |food_order|
-                tbody
-                    th #{food_order.food.name}
-                    th #{food_order.quantity}
+
+            / - if @status == "Pendiente"
+            /   - order.food_orders.where(status: "Pendiente").each do |food_order|
+            /     tbody
+            /         th #{food_order.food.name}
+            /         th #{food_order.quantity}
+            / - if @status == "Finalizado"
+            /   - order.food_orders.where(status: "Finalizado").each do |food_order|
+            /     tbody
+            /         th #{food_order.food.name}
+            /         th #{food_order.quantity}
