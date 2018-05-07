@@ -8,7 +8,7 @@ br
     .card
       = content_tag(:div, id: "heading" + order.id.to_s, class: "card-header")
         h5.mb-0
-          button.btn.btn-link aria-controls= "#{"collapse" + order.id.to_s}" aria-expanded="true" data-target="#{"collapse" + order.id.to_s}" data-toggle="collapse"
+          .title-card
             b> Mozo:
             span> #{order.name} &nbsp; &nbsp;
             b> Mesa:
@@ -18,7 +18,7 @@ br
             b> Actualizado
             span> #{order.updated_at.strftime('%H:%M %d-%m-%y')}
           span> &nbsp; &nbsp;
-          = link_to fa_icon("trash"), order, data: { confirm: 'Are you sure?' }, method: :delete
+          = link_to "Eliminar", order, class: "btn btn-danger", method: :delete
 
       = content_tag(:div, id: "collapse" + order.id.to_s, class: "collapse show", 'aria-labelledby' => "heading" + + order.id.to_s, 'data_parent' => "#accordion")
         .card-body
@@ -35,8 +35,8 @@ br
                   th #{food_order.food.name}
                   th #{food_order.quantity}
                   th #{"S/"+food_order.food.price.to_s}
-                  th Editar
-                  th = link_to fa_icon("trash"), food_order, data: { confirm: 'Are you sure?' }, method: :delete
+                  th = link_to "Editar", food_order, class: "btn btn-warning", data: { confirm: 'Are you sure?' }, method: :delete
+                  th = link_to "Eliminar", food_order, class: "btn btn-danger", data: { confirm: 'Are you sure?' }, method: :delete
             tbody
                   th Total
                   th
