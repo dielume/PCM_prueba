@@ -1,4 +1,11 @@
 = form_for @order do |f|
+  - if flash[:error]
+    #error_explanation
+    .alert.alert-danger.alert-dismissible role="alert"
+      a.close aria-label="close" data-dismiss="alert" href="#"  ×
+      h2 = "Un error encontrado"
+      ul
+        li = flash[:error]
   .row
     .field.col-md-3.col-6
       = f.label "Mozo"
