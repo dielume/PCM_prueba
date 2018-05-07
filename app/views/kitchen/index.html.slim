@@ -2,7 +2,7 @@ h1 Lista de ordenes
 h3.same-line Filtros
 = link_to 'Pendientes', kitchen_index_path(status: "Pendiente"), class: "btn btn-primary btn-align"
 = link_to 'Terminados', kitchen_index_path(status: "Finalizado"), class: "btn btn-primary btn-align"
-= will_paginate @orders, class: "space-pagination"
+= will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 br
 - @orders.each do |order|
   #accordion
