@@ -33,8 +33,8 @@ class Order < ApplicationRecord
   private
 
     def html_new_order_chef(order)
-      'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido '+order.id.to_s+'</h2></div>
-       <div id="accordion">
+      # 'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Nuevo pedido '+order.id.to_s+'</h2></div>
+      'chef<div id="accordion">
         <div class="card">
           <div class="card-header bg-success" id="headingOne" "bg-success">
             <h5 class="mb-0"><div class="title-card">
@@ -58,7 +58,7 @@ class Order < ApplicationRecord
           </div>
         </div>
        </div>
-      </div>'
+      </div>' + '<script>toastr.success("Nueva orden N ' + order.id.to_s + '");</script>'
     end
     def food_order_select(order)
       strings = order.food_orders.map do |food_order|
@@ -71,13 +71,14 @@ class Order < ApplicationRecord
       strings.join
     end
     def html_update_finalizado(order)
-      'mozo<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' finalizado revisar Estados Finalizados</h2>
-        <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
-      </div>'
+      'mozo<script>toastr.success("Orden N ' + order.id.to_s+ ' finalizado revisar Estados Finalizados");</script>'
+      # 'mozo<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' finalizado revisar Estados Finalizados</h2>
+      #   <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
+      # </div>'
     end
     def html_update_agregar(order)
-      'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Se agregan platos a la orden ' + order.id.to_s + '</h2></div>
-       <div id="accordion">
+      # 'chef<div class="alert alert-success alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Se agregan platos a la orden ' + order.id.to_s + '</h2></div>
+      'chef<div id="accordion">
         <div class="card">
           <div class="card-header bg-success" id="headingOne" >
             <h5 class="mb-0"><div class="title-card">
@@ -101,7 +102,7 @@ class Order < ApplicationRecord
           </div>
         </div>
        </div>
-      </div>'
+      </div>' + '<script>toastr.success("Se agregan platos a la orden N ' + order.id.to_s + ' revisar");</script>'
     end
     def food_order_select_status_pendiente(order)
       strings = order.food_orders.order(status: :desc).map do |food_order|
@@ -114,8 +115,9 @@ class Order < ApplicationRecord
       strings.join
     end
     def html_cancelar_pedido(order)
-      'chef<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' Cancelado!! Detener su preparación</h2>
-        <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
-      </div>'
+      # 'chef<div class="alert alert-danger alert-dismissible" role="alert"><a aria-label="close" class="close" data-dismiss="alert" href="#"> ×</a><h2>Pedido ' +order.id.to_s+ ' Cancelado!! Detener su preparación</h2>
+      #   <h4><b>N:</b> <span>'+ order.id.to_s + '&nbsp; </span><b>Mozo:</b> <span>'+ order.name + '&nbsp; </span><b>Mesa:</b> <span>' + order.table.to_s + '&nbsp; </span> <b>Estado:</b> <span>' + order.status + '&nbsp; </span> <b>Actualizado</b> <span>'+ order.updated_at.strftime('%H:%M %d-%m-%y')+'</span></h3>
+      # </div>'
+      'chef<script>toastr.error("Orden N ' +order.id.to_s+ ' Cancelado!! Detener su preparación");</script>'
     end
 end

@@ -8,10 +8,11 @@ h3.same-line Estados
   = link_to 'Finalizados', kitchen_index_path(status: "Finalizado"), class: "btn btn-primary btn-align"
 = will_paginate @orders, renderer: WillPaginate::ActionView::BootstrapLinkRenderer
 br
-- flash.each do |name, msg|
-  #alert class = "#{flash_class(name)} alert-dismissible" role="alert"
-    a.close aria-label="close" data-dismiss="alert" href="#"  ×
-    h2 = msg
+= custom_bootstrap_flash
+/ - flash.each do |name, msg|
+/   #alert class = "#{flash_class(name)} alert-dismissible" role="alert"
+/     a.close aria-label="close" data-dismiss="alert" href="#"  ×
+/     h2 = msg
 #kitchen value="chef"
 - @orders.each do |order|
   #accordion

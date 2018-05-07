@@ -40,6 +40,8 @@ gem 'simple_form'
 gem "font-awesome-rails"
 gem 'webpacker', '~> 3.5'
 gem 'will_paginate-bootstrap4'
+# gem 'toastr_rails', git: 'https://github.com/d4be4st/toastr_rails'
+gem 'toastr-rails'
 # gem 'will_paginate-bootstrap'
 # gem 'will_paginate', '~> 3.1.0'
 
