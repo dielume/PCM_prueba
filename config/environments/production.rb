@@ -90,8 +90,13 @@ config.webpacker.check_yarn_integrity = false
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  config.action_cable.allowed_request_origins = ['https://boiling-brook-40618.herokuapp.com', 'http://boiling-brook-40618.herokuapp.com']
-  config.action_cable.url = "wss://boiling-brook-40618.herokuapp.com/cable"
+
+  # Falta probar
+  # config.middleware.use ChatActionCable
+  # config.web_socket_server_url = "wss://boiling-brook-40618.herokuapp.com/"
+
+  # config.action_cable.allowed_request_origins = ['https://boiling-brook-40618.herokuapp.com', 'http://boiling-brook-40618.herokuapp.com']
+  # config.action_cable.url = "wss://boiling-brook-40618.herokuapp.com/cable"
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false

@@ -1,14 +1,18 @@
 jQuery(document).on('turbolinks:load', function() {
-  App.room = App.cable.subscriptions.create("WebNotificationsChannel", {
-    connected: function() {
-            console.log("connected")
-          },
-    disconnected: function() {
-        console.log("disconnected de nuevo") 
-    },
-    received: function(data) {
-      return $('#messages').append(data['message']);
-    }
+  $('#kitchen').each(function(){
+    App.room = App.cable.subscriptions.create("WebNotificationsChannel", {
+      connected: function() {
+              console.log("connected")
+            },
+      disconnected: function() {
+          console.log("disconnected de nuevo")
+      },
+      received: function(data) {
+        return $('#kitchen').append(data['message']);
+
+      }
+    });
+
   });
   // $('.graph_cable').each(function(){
   //   App.global_chat = App.cable.subscriptions.create({
