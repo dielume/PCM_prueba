@@ -36,7 +36,7 @@ require "capistrano/rails"
 # require "capistrano/rails/migrations"
 # require "capistrano/passenger"
 require 'capistrano/puma'
-require "whenever/capistrano"
+
 require 'capistrano/logrotate'
 
 install_plugin Capistrano::Puma  # Default puma tasks
