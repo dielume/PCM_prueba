@@ -3,6 +3,7 @@ lock "~> 3.10.2"
 
 set :application, "prueba"
 set :repo_url, "git@github.com:dielume/PCM_prueba.git"
+set :rails_env, 'production'
 
 set :rbenv_ruby, '2.4.1'
 set :rbenv_type, :user
