@@ -19,7 +19,7 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 # app side by side. Also provides quick sanity checks when looking
 # at filepaths
 
-set :server_name, "blizu.org"
+set :server_name, "blizu.xyz"
 
 server "#{fetch(:server_name)}", user: "#{fetch(:deploy_user)}", roles: %w{app db web}
 
